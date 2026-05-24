@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+
+const { title, lastUpdated } = Astro.props;
+const siteTitle = title ? `${title} | ハイモナビ 法的文書` : 'ハイモナビ 法的文書';
+const description = 'モバイルアプリ「ハイモナビ（HiMo Navi）」の法的文書を掲載しています。';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://himonavi-legal.pages.dev');
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="ハイモナビ 法的文書" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-logo" href="/">ハイモナビ 法的文書</a>
+      <nav class="site-nav" aria-label="主要ページ">
+        <a href="/">トップ</a>
+        <a href="/tokushoho">特商法</a>
+        <a href="/privacy-policy">プラポリ</a>
+        <a href="/terms">利用規約</a>
+        <a href="/contact">お問い合わせ</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p>最終更新日: {lastUpdated}</p>
+      <p>&copy; 2026 UMA Labs</p>
+    </footer>
+  </body>
+</html>
